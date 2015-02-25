@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SzyfratorPlikow
@@ -29,6 +22,7 @@ namespace SzyfratorPlikow
             {
                 plikZrSz = openFileDialogSzZr.FileName;
                 tbZrodloSz.Text = plikZrSz;
+                tbDocSz.Text = plikZrSz + ".sejf";
             }
         }
 
@@ -48,7 +42,11 @@ namespace SzyfratorPlikow
             if (result == DialogResult.OK)
             {
                 plikZrDe = openFileDialogDeZr.FileName;
-                tbZrodloSz.Text = plikZrDe;
+                tbZrodloDe.Text = plikZrDe;
+                //char[] MyChar = { '.', 's', 'e', 'j', 'f'};
+                //string tempText = plikZrDe.TrimEnd(MyChar);
+                string tempText = plikZrDe.Remove(plikZrDe.Length - 5, 5);
+                tbDocDe.Text = tempText;
             }
         }
 
@@ -60,6 +58,50 @@ namespace SzyfratorPlikow
                 plikDocSz = saveFileDialogDeDoc.FileName;
                 tbDocDe.Text = plikDocDe;
             }
+        }
+
+        private void btPokazZnakiSz_CheckedChanged(object sender, EventArgs e)
+        {
+            if (btPokazZnakiSz.Checked == true)
+            {
+                tbHasloSz.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                tbHasloSz.UseSystemPasswordChar = true;
+            }
+        }
+
+        private void cbPokazZnakiDe_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbPokazZnakiDe.Checked == true)
+            {
+                tbHasloDe.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                tbHasloDe.UseSystemPasswordChar = true;
+            }
+        }
+
+        private void buttonDeSz_Click(object sender, EventArgs e)
+        {
+            string haslo = tbHasloDe.Text;
+            plikZrDe = tbZrodloDe.Text;
+            plikDocDe = tbDocDe.Text;
+            Encryptor szyfrator = new Encryptor();
+            bool wynik = szyfrator.DecryptFile(plikZrDe, plikDocDe, haslo);
+            tbHasloDe.Text = "";
+        }
+
+        private void buttonSz_Click(object sender, EventArgs e)
+        {
+            string haslo = tbHasloSz.Text;
+            plikZrSz = tbZrodloSz.Text;
+            plikDocSz = tbDocSz.Text;
+            Encryptor szyfrator = new Encryptor();
+            bool wynik = szyfrator.EncryptFile(plikZrSz, plikDocSz, haslo);
+            tbHasloSz.Text = "";
         }
     }
 }

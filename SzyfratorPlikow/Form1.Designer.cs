@@ -132,6 +132,7 @@
             this.buttonSz.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.buttonSz.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonSz.UseVisualStyleBackColor = true;
+            this.buttonSz.Click += new System.EventHandler(this.buttonSz_Click);
             // 
             // groupBox8
             // 
@@ -181,6 +182,7 @@
             this.btPokazZnakiSz.TabIndex = 1;
             this.btPokazZnakiSz.Text = "Pokaż znaki";
             this.btPokazZnakiSz.UseVisualStyleBackColor = true;
+            this.btPokazZnakiSz.CheckedChanged += new System.EventHandler(this.btPokazZnakiSz_CheckedChanged);
             // 
             // tbHasloSz
             // 
@@ -188,6 +190,7 @@
             this.tbHasloSz.Name = "tbHasloSz";
             this.tbHasloSz.Size = new System.Drawing.Size(382, 20);
             this.tbHasloSz.TabIndex = 0;
+            this.tbHasloSz.UseSystemPasswordChar = true;
             // 
             // tabPage4
             // 
@@ -279,6 +282,7 @@
             this.cbPokazZnakiDe.TabIndex = 1;
             this.cbPokazZnakiDe.Text = "Pokaż znaki";
             this.cbPokazZnakiDe.UseVisualStyleBackColor = true;
+            this.cbPokazZnakiDe.CheckedChanged += new System.EventHandler(this.cbPokazZnakiDe_CheckedChanged);
             // 
             // tbHasloDe
             // 
@@ -286,6 +290,7 @@
             this.tbHasloDe.Name = "tbHasloDe";
             this.tbHasloDe.Size = new System.Drawing.Size(382, 20);
             this.tbHasloDe.TabIndex = 0;
+            this.tbHasloDe.UseSystemPasswordChar = true;
             // 
             // buttonDeSz
             // 
@@ -300,6 +305,7 @@
             this.buttonDeSz.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.buttonDeSz.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonDeSz.UseVisualStyleBackColor = true;
+            this.buttonDeSz.Click += new System.EventHandler(this.buttonDeSz_Click);
             // 
             // openFileDialogSzZr
             // 
