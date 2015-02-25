@@ -21,10 +21,10 @@ namespace SzyfratorPlikow
                 Rfc2898DeriveBytes derivedKey = new Rfc2898DeriveBytes(key, keyBytes);
 
                 RijndaelManaged rijndaelCSP = new RijndaelManaged();
+                rijndaelCSP.Padding = PaddingMode.PKCS7;
                 rijndaelCSP.Key = derivedKey.GetBytes(rijndaelCSP.KeySize / 8);
                 rijndaelCSP.IV = derivedKey.GetBytes(rijndaelCSP.BlockSize / 8);
                 //rijndaelCSP.Padding = PaddingMode.ANSIX923;
-                rijndaelCSP.Padding = PaddingMode.PKCS7;
 
                 ICryptoTransform encryptor = rijndaelCSP.CreateEncryptor();
 
@@ -65,10 +65,10 @@ namespace SzyfratorPlikow
                 Rfc2898DeriveBytes derivedKey = new Rfc2898DeriveBytes(key, keyBytes);
 
                 RijndaelManaged rijndaelCSP = new RijndaelManaged();
+                rijndaelCSP.Padding = PaddingMode.PKCS7;
                 rijndaelCSP.Key = derivedKey.GetBytes(rijndaelCSP.KeySize / 8);
                 rijndaelCSP.IV = derivedKey.GetBytes(rijndaelCSP.BlockSize / 8);
                 //rijndaelCSP.Padding = PaddingMode.ANSIX923;
-                rijndaelCSP.Padding = PaddingMode.PKCS7;
 
                 ICryptoTransform decryptor = rijndaelCSP.CreateDecryptor();
 
