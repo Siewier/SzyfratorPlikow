@@ -22,12 +22,12 @@ namespace SzyfratorPlikow
 
                 RijndaelManaged rijndaelCSP = new RijndaelManaged();
                 rijndaelCSP.Padding = PaddingMode.PKCS7;
+                rijndaelCSP.BlockSize = 128;
                 rijndaelCSP.Key = derivedKey.GetBytes(rijndaelCSP.KeySize / 8);
                 rijndaelCSP.IV = derivedKey.GetBytes(rijndaelCSP.BlockSize / 8);
-                //rijndaelCSP.Padding = PaddingMode.ANSIX923;
 
                 ICryptoTransform encryptor = rijndaelCSP.CreateEncryptor();
-
+                
                 FileStream inputFileStream = new FileStream(inputFile, FileMode.Open, FileAccess.Read);
 
                 byte[] inputFileData = new byte[(int)inputFileStream.Length];
@@ -66,9 +66,9 @@ namespace SzyfratorPlikow
 
                 RijndaelManaged rijndaelCSP = new RijndaelManaged();
                 rijndaelCSP.Padding = PaddingMode.PKCS7;
+                rijndaelCSP.BlockSize = 128;
                 rijndaelCSP.Key = derivedKey.GetBytes(rijndaelCSP.KeySize / 8);
                 rijndaelCSP.IV = derivedKey.GetBytes(rijndaelCSP.BlockSize / 8);
-                //rijndaelCSP.Padding = PaddingMode.ANSIX923;
 
                 ICryptoTransform decryptor = rijndaelCSP.CreateDecryptor();
 
@@ -81,10 +81,6 @@ namespace SzyfratorPlikow
 
                 FileStream outputFileStream = new FileStream(outputFile, FileMode.Create, FileAccess.Write);
                 outputFileStream.Write(inputFileData, 0, inputFileData.Length);
-
-                //int decrypt_length = decryptStream.Read(inputFileData, 0, (int)inputFileStream.Length);
-                //FileStream outputFileStream = new FileStream(outputFile, FileMode.Create, FileAccess.Write);
-                //outputFileStream.Write(inputFileData, 0, decrypt_length);
 
                 outputFileStream.Flush();
 
